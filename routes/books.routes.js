@@ -52,6 +52,8 @@ booksRouter.post("/create", async(req, res) => {
         const bookToAdd = {}
         bookToAdd.title = reqBody.title
         bookToAdd.author = reqBody.author
+        bookToAdd.userId = reqBody.userId
+
         const role = req.body.role
 
         if (role === "CREATOR") {
