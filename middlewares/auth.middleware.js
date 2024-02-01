@@ -12,6 +12,8 @@ const auth = async(req, res, next) => {
             jwt.verify(token, process.env.JWT_SECRET || 'avenger', function(err, decoded) {
                 if (decoded) {
                     req.body.role = decoded.role
+                    req.body.userId = decoded.userId
+
                     next()
                 } else if (err) {
                     res.status(200).json({"msg": "Wrong token provided"})

@@ -40,12 +40,13 @@ userRouter.post("/login", async(req, res)=> {
             let passwordSentByUser = password
             let passwordFromDB = user.password
             let role = user.role
+            let userId = user._id
 
 
             const passwordMatch = await bcrypt.compare(passwordSentByUser, passwordFromDB);
 
             if (passwordMatch) {
-                const token = jwt.sign({ email, role }, process.env.JWT_SECRET || 'avenger');
+                const token = jwt.sign({ email, role, userId }, process.env.JWT_SECRET || 'avenger');
                 res.status(200).json({ "msg": "Login Successful", "token": token , "userName": user.userName, "role": user.role});
             } else {
                 res.status(401).json({ "msg": "Incorrect password" });
