@@ -5,6 +5,7 @@ const {connection} = require("./connect")
 const { auth } = require("./middlewares/auth.middleware");
 const { userRouter } = require("./routes/users.routes");
 const { booksRouter } = require("./routes/books.routes");
+const loggerMiddleware = require("./middlewares/logger.middleware");
 
 
 
@@ -14,6 +15,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json())
 app.use(cors())
+app.use(loggerMiddleware())
+
 
 app.use("/users", userRouter)
 
