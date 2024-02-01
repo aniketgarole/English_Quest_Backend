@@ -9,6 +9,5 @@ const loggerMiddleware = () => {
 };
 
 
-console.log("inside logger middleware")
 
 module.exports = loggerMiddleware;

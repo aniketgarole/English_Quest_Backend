@@ -8,7 +8,6 @@ const auth = async(req, res, next) => {
         const wholeToken = req.headers.authorization
         if (wholeToken) {
             const token = wholeToken.split(" ")[1]
-            console.log(token)
             jwt.verify(token, process.env.JWT_SECRET || 'avenger', function(err, decoded) {
                 if (decoded) {
                     req.body.role = decoded.role
